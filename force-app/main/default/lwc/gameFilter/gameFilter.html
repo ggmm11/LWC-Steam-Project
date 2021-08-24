@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="Filters" icon-name="standard:calibration">
+        <div class="slds-m-horizontal_medium">
+            <lightning-input label="Search key" type="search" value={filters.searchKey}
+             onchange={handlerSearchKeyChange}></lightning-input>
+
+             <section class="slider_section">
+                 <lightning-slider label = "Price Range" step="1" min="0" max="100"
+                 value={filters.maxPrice} onchange={handlerMaxPriceChange}></lightning-slider>
+             </section>
+
+             <section>
+                 <h2>Game Tab</h2>
+                 <template if:true={game_tabs.data}>
+                     <template for:each={game_tabs.data.values} for:item="game_tab">
+                        <lightning-input key={game_tab.value}
+                        label={game_tab.label}
+                        data-name="game_tab"
+                        data-value={game_tab.value}
+                        type="checkbox"
+                        checked
+                        onchange={handlerCheckbox}></lightning-input>
+                     </template>  
+                 </template>
+                 <template if:true={game_tabs.error}>
+                     <div>{gameTabError}</div>
+                 </template>
+             </section>
+
+             <section>
+                 <h2>Language</h2>
+                 <template if:true={languages.data}>
+                    <template for:each={languages.data.values} for:item="language">
+                       <lightning-input key={language.value}
+                       label={language.label}
+                       data-name="language"
+                       data-value={language.value}
+                       type="checkbox"
+                       checked
+                       onchange={handlerCheckbox}></lightning-input>
+                    </template>  
+                </template>
+                <template if:true={languages.error}>
+                    <div>{languageError}</div>
+                </template>
+             </section>
+        </div>
+    </lightning-card>
+</template>

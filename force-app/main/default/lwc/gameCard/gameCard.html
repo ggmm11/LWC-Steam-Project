@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title={gameName} icon-name="standard:apex_plugin">
+        <template if:true={recordId}>
+            <lightning-button-icon icon-name="utility:expand_alt" slot="actions" onclick={handleNavigateToRecord}></lightning-button-icon>
+            <div class="slds-m-horizontal_medium">
+                <img src={gamePictureUrl} alt="Game Picture"/>
+                <lightning-record-view-form onload={hanldeRecordLoaded} record-id={recordId} object-api-name="Game__c" density="compact">
+                    <lightning-output-field field-name={gameTabField}></lightning-output-field>
+                    <lightning-output-field field-name={developerField}></lightning-output-field>
+                    <lightning-output-field field-name={priceField}></lightning-output-field>
+                    <section>Other Features</section>
+                    <lightning-output-field field-name={languageField}></lightning-output-field>
+                    <lightning-output-field field-name={editionField}></lightning-output-field>
+                    <lightning-output-field field-name={dlcField}></lightning-output-field>
+                </lightning-record-view-form>
+            </div>
+        </template>
+        <template if:false={recordId}>
+            <c-place-holder message="Pick a game to see details"></c-place-holder>
+        </template>
+    </lightning-card>
+</template>

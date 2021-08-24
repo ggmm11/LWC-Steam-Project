@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Game Tile List" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <template if:true={games.length}>
+                <div class="content">
+                    <template for:each={games} for:item="game">
+                        <c-game-tile key={game.Id} game={game} onselected={handleGameSelected}></c-game-tile>
+                    </template>
+                </div>
+            </template>
+            <template if:false={games.length}>
+                <c-place-holder message="There is no game matching your selection"></c-place-holder>
+            </template>
+        </div>
+    </lightning-card>
+</template>

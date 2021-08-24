@@ -1,0 +1,9 @@
+c-game-tile{
+    min-width: 200px;
+    flex:1;
+}
+.content{
+    display:grid;
+    /* flex-wrap: nowrap; */
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+}
