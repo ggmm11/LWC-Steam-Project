@@ -44,4 +44,10 @@ public with sharing class GameController {
         String query = 'SELECT Id, Name, Price__c, Description__c, Game_Tab__c, Language__c, Picture_URL__c FROM Game__c ' + whereClause + ' WITH SECURITY_ENFORCED ORDER BY NAME';
         return Database.query(query);
     }
+
+    @AuraEnabled(Cacheable=true)
+    public static Game__c[] getSimilarGames(Id gameId, String[] gameTab){
+        return [SELECT Id, Name, Price__c, Description__c, Game_Tab__c, Picture_URL__c, Language__c 
+        FROM Game__c WHERE Game_Tab__c IN :gameTab AND Id != :gameId];
+    }
 }
